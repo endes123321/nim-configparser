@@ -37,8 +37,9 @@ proc setSection*(this: Ini, name: string, section: Section) =
 proc getSection*(this: Ini, name: string): Section =
     return this.sections.getOrDefault(name)
 
-template sectionNames*(this: Ini): iterator (): string =
-    this.sections.keys()
+iterator sectionNames*(this: Ini): string =
+    for name in this.sections.keys():
+        yield name
 
 proc hasSection*(this: Ini, name: string): bool =
     return this.sections.contains(name)
